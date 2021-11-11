@@ -33,3 +33,14 @@ Invoke:
 npm run mojo-update
 ```
 
+Ubuntu Mojo 3 part tutorial:
+
+```bash
+npm run mojo-juju-1of3
+npm run mojo-juju-2of3
+npm run mojo-juju-3of3
+```
+Bug: Most images are missing
+
+
+

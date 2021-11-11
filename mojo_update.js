@@ -1,7 +1,15 @@
 const puppeteer = require('puppeteer-core');
 
-const url = 'https://ubuntu.com/blog/mojo-updates';
-const pdf = 'blog-mojo-update.pdf';
+const argv = process.argv;
+
+if ( argv.length!=4){
+	console.error(`Usage: ${argv[0]} ${argv[1]} URL OUTPUT_PDF_FILE`);
+	process.exit(1);
+}
+
+const url = argv[2];
+const pdf = argv[3];
+console.log(`Fetching '${url}' to '${pdf}'...`);
 
 (async () => {
   const browser = await puppeteer.launch(
@@ -9,8 +17,9 @@ const pdf = 'blog-mojo-update.pdf';
   );
   const page = await browser.newPage();
   await page.goto( url, {
-    waitUntil: 'networkidle2',
+    waitUntil: 'networkidle0',
   });
+
 
   let html = await page.$eval('article', (element) => {
       return element.outerHTML;
@@ -39,7 +48,6 @@ const pdf = 'blog-mojo-update.pdf';
 
   await page.addStyleTag({url: 'https://ubuntu.com/static/css/print.css?v=e91d129'});
  
-
 /*
   await page.waitForSelector('button.p-button--positive');
   await page.click('button.p-button--positive');

@@ -4,7 +4,10 @@
   "description": "",
   "main": "mojo_update.js",
   "scripts": {
-    "mojo-update": "node mojo_update.js",
+    "mojo-update": "node mojo_update.js https://ubuntu.com/blog/mojo-updates blog-mojo-update.pdf",
+    "mojo-juju-1of3": "node mojo_update.js https://ubuntu.com/blog/mojo-juju-service-orchestration-distilled blog-mojo-juju-1of3.pdf",
+    "mojo-juju-2of3": "node mojo_update.js https://ubuntu.com/blog/mojo-juju-service-orchestration-distilled-part-2 blog-mojo-juju-2of3.pdf",
+    "mojo-juju-3of3": "node mojo_update.js https://ubuntu.com/blog/mojo-juju-service-orchestration-distilled-part-3 blog-mojo-juju-3of3.pdf",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "",
