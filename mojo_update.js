@@ -28,6 +28,15 @@ const pdf = 'blog-mojo-update.pdf';
     });
   });
 
+  await page.evaluate(() => {
+     // remove product card
+     let toDel = document.querySelector('div#product-card');
+         toDel.parentNode.removeChild(toDel);
+     // TODO: use array
+     let toDel2 = document.querySelector('div.blog-p-card--muted');
+         toDel2.parentNode.removeChild(toDel2);
+    });
+
   await page.addStyleTag({url: 'https://ubuntu.com/static/css/print.css?v=e91d129'});
  
 
@@ -35,12 +44,6 @@ const pdf = 'blog-mojo-update.pdf';
   await page.waitForSelector('button.p-button--positive');
   await page.click('button.p-button--positive');
   await page.waitForSelector('div.p-post__content');
-
-  await page.evaluate(() => {
-     // remove Submissions
-     let toDel = document.querySelector('div#success');
-         toDel.parentNode.removeChild(toDel);
-  });
   */
 
   await page.pdf({ path: pdf, format: 'a4' });
