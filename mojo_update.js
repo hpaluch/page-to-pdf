@@ -47,9 +47,11 @@ console.log(`Fetching '${url}' to '${pdf}'...`);
     });
 
   await page.addStyleTag({url: 'https://ubuntu.com/static/css/print.css?v=e91d129'});
- 
-/*
-  await page.waitForSelector('button.p-button--positive');
+  await page.addScriptTag({url: 'https://assets.ubuntu.com/v1/703e23c9-lazysizes+noscript+native-loading.5.1.2.min.js'});
+  
+
+ // await page.waitFor(5000);
+/*	
   await page.click('button.p-button--positive');
   await page.waitForSelector('div.p-post__content');
   */
