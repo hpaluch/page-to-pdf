@@ -8,11 +8,16 @@
     "mojo-juju-1of3": "node mojo_update.js https://ubuntu.com/blog/mojo-juju-service-orchestration-distilled blog-mojo-juju-1of3.pdf",
     "mojo-juju-2of3": "node mojo_update.js https://ubuntu.com/blog/mojo-juju-service-orchestration-distilled-part-2 blog-mojo-juju-2of3.pdf",
     "mojo-juju-3of3": "node mojo_update.js https://ubuntu.com/blog/mojo-juju-service-orchestration-distilled-part-3 blog-mojo-juju-3of3.pdf",
+    "lxd-cls-primer": "node mojo_update.js https://ubuntu.com/blog/lxd-clusters-a-primer lxd-cls-primer.pdf",
+    "juju": "node juju.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "expect": "^27.3.1",
+    "hummus": "^1.0.110",
+    "memory-streams": "^0.1.3",
     "puppeteer-core": "^11.0.0"
   }
 }
