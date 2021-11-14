@@ -11,6 +11,7 @@
     "lxd-cls-primer": "node mojo_update.js https://ubuntu.com/blog/lxd-clusters-a-primer lxd-cls-primer.pdf",
     "juju": "node juju.js",
     "lxd": "node lxd.js",
+    "maas": "node maas.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "",
