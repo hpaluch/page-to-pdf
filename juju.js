@@ -2,8 +2,10 @@
 //
 // based on: https://github.com/facebook/docusaurus/issues/969#issuecomment-595012118
 
-const startUrl = 'https://juju.is/docs/olm';
-const pdf = 'juju-docs-olm.pdf';
+//const startUrl = 'https://juju.is/docs/olm';
+//const pdf = 'juju-docs-olm.pdf';
+const startUrl = 'https://juju.is/docs/sdk';
+const pdf = 'juju-docs-sdk.pdf';
 
 const expect = require('expect');
 const puppeteer = require('puppeteer-core');
@@ -49,6 +51,10 @@ let generatedPdfBlobs = [];
   for (var i=0; i<links.length;i++) {
     //if (i>20) break;
     let nextPageUrl = links[i];
+    if (!nextPageUrl.startsWith(startUrl)){
+	    console.log(`WARN: URL '${nextPageUrl}' does NOT start with '${startUrl}'. Skipping.`);
+	    continue;
+    }
     console.log(`Crawling (${i+1}/${links.length}): '${nextPageUrl}'`);
     await page.goto(`${nextPageUrl}`, {waitUntil: 'networkidle0'});
       
