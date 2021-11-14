@@ -46,11 +46,10 @@ let generatedPdfBlobs = [];
   expect(links.length).toBeGreaterThan(0);
   console.log(`Tests passed: got  ${links.length} links`);
 
-  for (var i in links) {
-    if (i>3) break;
-    // js is really weird...
+  for (var i=0; i<links.length;i++) {
+    //if (i>20) break;
     let nextPageUrl = links[i];
-    console.log(`Crawling: '${nextPageUrl}'`);
+    console.log(`Crawling (${i+1}/${links.length}): '${nextPageUrl}'`);
     await page.goto(`${nextPageUrl}`, {waitUntil: 'networkidle0'});
       
     let html = await page.$eval('main#main-content', (element) => {
@@ -58,11 +57,13 @@ let generatedPdfBlobs = [];
     });
   
     await page.setContent(html);
-    // remove not wanted content
-    // from: https://stackoverflow.com/a/51488147
-    await page.evaluate(() => {
-     let toDel = document.querySelector('div.searhBar');
-      //   toDel.parentNode.removeChild(toDel);
+
+    // add word-wrap to all <pre/> elements
+    await page.$$eval('pre', (pre) => {
+      console.log(`Patching ${pre.length} <pre/> elements`);
+      pre.forEach( el => {
+        el.style.whiteSpace='pre-wrap';
+      });
     });
 
     await page.addStyleTag({url: 'https://juju.is/static/css/styles.css?v=8d5ecfe'});
@@ -70,6 +71,9 @@ let generatedPdfBlobs = [];
     const pdfBlob = await page.pdf({path: "", format: 'A4', printBackground: true, margin : {top: 20, right: 15, left: 15, bottom: 20}});
 
     generatedPdfBlobs.push(pdfBlob);
+    const waitMs = Math.random() * 1000 + 2000;
+    console.log(`Waiting for ${waitMs} ms`);
+    await page.waitForTimeout(waitMs); 
   }
   await browser.close();
 
