@@ -13,6 +13,7 @@
     "lxd": "node lxd.js",
     "maas": "node maas.js",
     "maas-pods": "node maas_pods.js",
+    "prometheus": "node prometheus.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "",
