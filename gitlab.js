@@ -3,7 +3,9 @@
 // based on: https://github.com/facebook/docusaurus/issues/969#issuecomment-595012118
 
 
-const topic = 'ci';
+// uncomment just one topic
+const topic = 'subscriptions';
+//const topic = 'ci';
 
 const startUrl = `https://docs.gitlab.com/ee/${topic}/`;
 const prefixUrl = startUrl;
@@ -105,11 +107,11 @@ let generatedPdfBlobs = [];
       });
     });
     
-    // delete annoying popups
-    await page.$$eval('div#toc, div.mw-pt-languages,div.mw-parser-output > table', (arr) => {
-      console.log(`Deleting ${arr.length} notification elements`);
+    // fit all images
+    await page.$$eval('img', (arr) => {
+      console.log(`Scaling ${arr.length} images`);
       arr.forEach( el => {
-         el.parentNode.removeChild(el);
+         el.style.objectFit = "scale-down";
       });
     }); 
 
