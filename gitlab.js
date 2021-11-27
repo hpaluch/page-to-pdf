@@ -4,12 +4,20 @@
 
 
 // uncomment just one topic
-const topic = 'subscriptions';
+// const topic = 'subscriptions';
+// const topic = 'api';
+// const topic = 'install';
+// const topic = 'runner/install'; // also must remove /ee/ from startUrl
+// const topic = 'topics';
+// const topic = 'integration';
+const topic = 'administration';
+// const topic = 'development';
 //const topic = 'ci';
 
 const startUrl = `https://docs.gitlab.com/ee/${topic}/`;
 const prefixUrl = startUrl;
-const pdf = `gitlab-${topic}-docs.pdf`;
+const safeTopic = topic.replace(/[^a-zA-Z0-9-]/g,'-');
+const pdf = `gitlab-${safeTopic}-docs.pdf`;
 
 const expect = require('expect');
 const puppeteer = require('puppeteer-core');
@@ -36,6 +44,8 @@ let generatedPdfBlobs = [];
 (async () => {
   const browser = await puppeteer.launch({ executablePath: '/usr/bin/chromium' });
   let page = await browser.newPage();
+  await page.setDefaultNavigationTimeout(650000);
+  await page.setDefaultTimeout(600000);
   page.on('console', (msg) => console.log('PAGE LOG:', msg.text()));
 
   // extract toc links first
@@ -122,7 +132,10 @@ let generatedPdfBlobs = [];
     await page.waitForTimeout(waitMs); 
 
     //await page.addScriptTag({url: 'http://localhost:3000/styles.js'});
-    const pdfBlob = await page.pdf({path: "", format: 'A4', printBackground: true, margin : {top: 20, right: 15, left: 15, bottom: 20},scale: 1.05});
+    const pdfBlob = await page.pdf({
+	    path: "", format: 'A4', printBackground: true,
+	    margin : {top: 20, right: 15, left: 15, bottom: 20},
+	    scale: 1.05,timeout: 651000});
 
     generatedPdfBlobs.push(pdfBlob);
   }
