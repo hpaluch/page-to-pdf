@@ -16,6 +16,7 @@
     "prometheus": "node prometheus.js",
     "gentoo_handbook": "node gentoo_hbook.js",
     "gitlab": "node gitlab.js",
+    "fedora": "node fedora.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "",
