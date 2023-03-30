@@ -21,6 +21,8 @@
     "k8s-spray": "node k8s-spray.js",
     "gitlab-misc": "node gitlab-misc.js",
     "bazel": "node bazel-docs.js",
+    "rancher": "node rancher-docs.js",
+    "snap": "node snap.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "",
